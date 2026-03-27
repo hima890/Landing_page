@@ -6,9 +6,36 @@ import Database from 'better-sqlite3';
 import helmet from 'helmet';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
+import crypto from 'crypto';
+import 'dotenv/config';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+const ADMIN_SECRET = process.env.ADMIN_SECRET;
+
+if (!ADMIN_EMAIL || !ADMIN_PASSWORD || !ADMIN_SECRET) {
+  console.error('ERROR: ADMIN_EMAIL, ADMIN_PASSWORD, and ADMIN_SECRET must be set in the environment.');
+  process.exit(1);
+}
+
+function generateToken(email: string): string {
+  const timestamp = Date.now().toString();
+  const hmac = crypto.createHmac('sha256', ADMIN_SECRET!).update(`${email}:${timestamp}`).digest('hex');
+  return `${timestamp}:${hmac}`;
+}
+
+function verifyToken(token: string): boolean {
+  const parts = token.split(':');
+  if (parts.length !== 2) return false;
+  const [timestamp, hmac] = parts;
+  const age = Date.now() - parseInt(timestamp, 10);
+  if (isNaN(age) || age < 0 || age > 24 * 60 * 60 * 1000) return false; // token valid for 24 hours
+  const expected = crypto.createHmac('sha256', ADMIN_SECRET!).update(`${ADMIN_EMAIL}:${timestamp}`).digest('hex');
+  return crypto.timingSafeEqual(Buffer.from(hmac, 'hex'), Buffer.from(expected, 'hex'));
+}
 
 async function startServer() {
   const app = express();
@@ -79,8 +106,13 @@ async function startServer() {
   // API Routes
   app.post('/api/admin/login', (req, res) => {
     const { email, password } = req.body;
-    if (email === 'hfibrahim90@gmail.com' && password === 'Notime800') {
-      res.json({ success: true, token: 'fake-admin-token' });
+    if (
+      typeof email === 'string' &&
+      typeof password === 'string' &&
+      email === ADMIN_EMAIL &&
+      crypto.timingSafeEqual(Buffer.from(password), Buffer.from(ADMIN_PASSWORD!))
+    ) {
+      res.json({ success: true, token: generateToken(email) });
     } else {
       res.status(401).json({ success: false, error: 'Invalid credentials' });
     }
@@ -112,7 +144,8 @@ async function startServer() {
   app.get('/api/admin/stats', (req, res) => {
     // Simple admin check (in real app, use proper auth)
     const authHeader = req.headers['authorization'];
-    if (authHeader !== 'Bearer fake-admin-token') {
+    const token = authHeader?.startsWith('Bearer ') ? authHeader.slice(7) : null;
+    if (!token || !verifyToken(token)) {
       return res.status(403).json({ error: 'Unauthorized' });
     }
 
