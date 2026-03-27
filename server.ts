@@ -31,10 +31,15 @@ function verifyToken(token: string): boolean {
   const parts = token.split(':');
   if (parts.length !== 2) return false;
   const [timestamp, hmac] = parts;
-  const age = Date.now() - parseInt(timestamp, 10);
-  if (isNaN(age) || age < 0 || age > 24 * 60 * 60 * 1000) return false; // token valid for 24 hours
+  const ts = parseInt(timestamp, 10);
+  const now = Date.now();
+  if (isNaN(ts) || ts > now || now - ts > 24 * 60 * 60 * 1000) return false; // reject future or expired tokens
   const expected = crypto.createHmac('sha256', ADMIN_SECRET!).update(`${ADMIN_EMAIL}:${timestamp}`).digest('hex');
-  return crypto.timingSafeEqual(Buffer.from(hmac, 'hex'), Buffer.from(expected, 'hex'));
+  try {
+    return crypto.timingSafeEqual(Buffer.from(hmac, 'hex'), Buffer.from(expected, 'hex'));
+  } catch {
+    return false;
+  }
 }
 
 async function startServer() {
@@ -110,7 +115,10 @@ async function startServer() {
       typeof email === 'string' &&
       typeof password === 'string' &&
       email === ADMIN_EMAIL &&
-      crypto.timingSafeEqual(Buffer.from(password), Buffer.from(ADMIN_PASSWORD!))
+      crypto.timingSafeEqual(
+        crypto.createHash('sha256').update(password).digest(),
+        crypto.createHash('sha256').update(ADMIN_PASSWORD!).digest()
+      )
     ) {
       res.json({ success: true, token: generateToken(email) });
     } else {
