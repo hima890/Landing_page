@@ -9,16 +9,17 @@ const resources = {
         features: 'Features',
         testimonials: 'Testimonials',
         why: 'Why Aventa',
-        join: 'Join Waitlist',
+        faq: 'FAQ',
+        join: 'Get Early Access',
         admin: 'Admin'
       },
       hero: {
-        badge: 'Now accepting early access requests',
-        title: 'Managing your business',
-        titleGradient: "shouldn't be hard.",
-        description: 'Aventa combines Sales, Inventory, HR, and AI-powered insights into one simple system. Built for small businesses that want to grow without the complexity.',
-        cta: 'Join the Waiting List',
-        learnMore: 'Learn how it works'
+        badge: 'Limited early access — now accepting applications',
+        title: 'The Business Management System',
+        titleGradient: 'Built for Small Business.',
+        description: 'Aventa is an all-in-one business management platform for SMBs. Combine POS, inventory tracking, finance insights, HR, and AI-powered CRM into one simple system — and run your business with total clarity.',
+        cta: 'Get Early Access',
+        learnMore: 'See how it works'
       },
       stats: {
         sales: 'Total Sales',
@@ -58,20 +59,20 @@ const resources = {
         simplicityDesc: 'Our interface is built to be intuitive. If you can use a smartphone, you can manage your business with Aventa.'
       },
       features: {
-        badge: 'Features',
-        title: 'Everything you need,',
-        titleSecondary: 'nothing you don\'t.',
-        description: 'We\'ve stripped away the enterprise bloat to give you the most powerful tools in their simplest form.',
+        badge: 'All-in-One Platform',
+        title: 'Every tool your small business needs,',
+        titleSecondary: 'none of the enterprise bloat.',
+        description: 'Aventa strips away complexity so you get the most powerful business management tools in their simplest, most affordable form.',
         list: [
-          { title: 'POS & Sales Management', desc: 'A lightning-fast checkout experience that handles payments, discounts, and receipts with ease.' },
-          { title: 'Inventory Tracking', desc: 'Automated stock alerts and easy multi-location management so you never run out of your best-sellers.' },
-          { title: 'Finance & Reports', desc: 'Visual insights into your profit, loss, and cash flow. Tax season just became a breeze.' },
-          { title: 'Smart HR Assistant', desc: 'Manage shifts, payroll, and staff performance without the usual administrative headache.' },
-          { title: 'AI-Powered CRM', desc: 'Understand your customers better with AI that predicts trends and helps you build loyalty.' }
+          { title: 'POS & Sales Management', desc: 'A fast, reliable point-of-sale system for small businesses. Process payments, apply discounts, and generate receipts — fully connected to your inventory.' },
+          { title: 'Inventory Tracking', desc: 'Automated stock alerts and real-time inventory management across locations. Never oversell or run out of your best-selling products again.' },
+          { title: 'Finance & Reports', desc: 'Clear, visual finance insights into profit, loss, and cash flow. Turn tax season from a nightmare into a five-minute review.' },
+          { title: 'Smart HR Assistant', desc: 'Manage staff shifts, payroll, and performance in one place. Built for business owners, not HR departments.' },
+          { title: 'AI-Powered CRM', desc: 'Understand your customers with AI that predicts buying trends, automates follow-ups, and helps you build lasting loyalty.' }
         ],
         learnMore: 'Learn more',
-        comingSoon: 'And more...',
-        comingSoonDesc: 'We\'re constantly building new tools based on your feedback. Join the waitlist to shape our roadmap.'
+        comingSoon: 'More features coming...',
+        comingSoonDesc: 'We build new tools based on real SMB feedback. Join the waitlist to help shape our roadmap.'
       },
       ai: {
         badge: 'Powered by Real Intelligence',
@@ -121,11 +122,42 @@ const resources = {
       },
       cta: {
         badge: 'Limited early access spots available',
-        title: 'Ready to simplify',
-        titleSecondary: 'your business?',
-        description: 'Join the waiting list today to get early access, special introductory offers, and the chance to help shape the future of Aventa.',
-        button: 'Join the Waiting List',
-        points: ['Early Access', 'Special Offers', 'Shape the Product']
+        title: 'Ready to simplify your',
+        titleSecondary: 'small business operations?',
+        description: 'Join hundreds of SMB owners already on the waitlist. Get early access, special introductory pricing, and help shape the future of Aventa.',
+        button: 'Get Early Access Now',
+        points: ['Free Early Access', 'Special Launch Pricing', 'Shape the Product']
+      },
+      faq: {
+        badge: 'FAQ',
+        title: 'Frequently Asked Questions',
+        titleSecondary: 'about Aventa & business management software.',
+        list: [
+          {
+            q: 'What is a business management system?',
+            a: 'A business management system is an integrated software platform that helps small and medium businesses run core operations — sales, inventory, finance, HR, and customer relationships — all from one dashboard. It replaces spreadsheets and disconnected tools with a single source of truth.'
+          },
+          {
+            q: 'Is Aventa suitable for small businesses?',
+            a: 'Yes. Aventa is built specifically for small and medium businesses (SMBs). Whether you run a retail shop, restaurant, service business, or startup, you get everything you need without the cost or complexity of enterprise software.'
+          },
+          {
+            q: 'How does inventory management work in Aventa?',
+            a: 'Aventa tracks your stock levels in real time. Every sale through the POS automatically updates inventory. You get low-stock alerts before you run out of key items, and the system supports multiple locations from a single dashboard.'
+          },
+          {
+            q: 'Does Aventa include a POS system?',
+            a: "Yes. Aventa includes a fully integrated Point of Sale (POS) system for small businesses. It handles payments, discounts, and receipts, and because it's connected to inventory and finance, every transaction updates your reports automatically."
+          },
+          {
+            q: 'What makes Aventa different from other business software?',
+            a: 'Aventa is designed for simplicity and integration. Unlike bloated enterprise platforms, it gives SMBs POS, inventory, finance, HR tools, and AI-powered CRM — all connected, all in one place, built for business owners without a technical background.'
+          },
+          {
+            q: 'Is Aventa affordable for small business owners?',
+            a: "Yes. Aventa is built to be lean and affordable for SMBs. Early access members get special introductory pricing. You pay for the value you use — not for enterprise features you'll never need."
+          }
+        ]
       },
       footer: {
         tagline: 'Built for small businesses, by people who care about them.',
@@ -204,7 +236,8 @@ const resources = {
         features: 'المميزات',
         testimonials: 'آراء العملاء',
         why: 'لماذا أفينتا',
-        join: 'انضم لقائمة الانتظار',
+        faq: 'الأسئلة الشائعة',
+        join: 'احصل على وصول مبكر',
         admin: 'الإدارة'
       },
       hero: {
@@ -321,6 +354,37 @@ const resources = {
         description: 'انضم لقائمة الانتظار اليوم للحصول على وصول مبكر، وعروض افتتاحية خاصة، وفرصة للمساعدة في تشكيل مستقبل أفينتا.',
         button: 'انضم لقائمة الانتظار الآن',
         points: ['وصول مبكر', 'عروض خاصة', 'شارك في بناء المنتج']
+      },
+      faq: {
+        badge: 'الأسئلة الشائعة',
+        title: 'الأسئلة الشائعة',
+        titleSecondary: 'حول أفينتا وبرامج إدارة الأعمال.',
+        list: [
+          {
+            q: 'ما هو نظام إدارة الأعمال؟',
+            a: 'نظام إدارة الأعمال هو منصة برمجية متكاملة تساعد الشركات الصغيرة والمتوسطة على إدارة العمليات الأساسية — المبيعات والمخزون والمالية والموارد البشرية وإدارة العملاء — من لوحة تحكم واحدة. يحل محل جداول البيانات المتشتتة والأدوات المنفصلة.'
+          },
+          {
+            q: 'هل أفينتا مناسب للشركات الصغيرة؟',
+            a: 'نعم. أفينتا مصمم خصيصاً للشركات الصغيرة والمتوسطة. سواء كنت تدير متجر تجزئة أو مطعماً أو شركة خدمات أو شركة ناشئة، ستحصل على كل ما تحتاجه دون التعقيد أو التكلفة العالية لبرامج الشركات الكبيرة.'
+          },
+          {
+            q: 'كيف يعمل نظام تتبع المخزون في أفينتا؟',
+            a: 'يتتبع أفينتا مستويات مخزونك في الوقت الفعلي. كل عملية بيع عبر نظام نقطة البيع تُحدِّث المخزون تلقائياً. ستتلقى تنبيهات نقص المخزون قبل نفاد المنتجات الأكثر مبيعاً، ويدعم النظام مواقع متعددة.'
+          },
+          {
+            q: 'هل يتضمن أفينتا نظام نقطة بيع (POS)؟',
+            a: 'نعم. يتضمن أفينتا نظام نقطة بيع متكاملاً للشركات الصغيرة. يعالج المدفوعات والخصومات والإيصالات، ولأنه مرتبط بالمخزون والمالية، كل معاملة تُحدِّث تقاريرك تلقائياً.'
+          },
+          {
+            q: 'ما الذي يميز أفينتا عن برامج الأعمال الأخرى؟',
+            a: 'صُمِّم أفينتا للبساطة والتكامل. على عكس المنصات المعقدة للشركات الكبيرة، يمنح أفينتا الشركات الصغيرة نظام نقطة بيع وإدارة مخزون وتقارير مالية وأدوات موارد بشرية وإدارة عملاء بالذكاء الاصطناعي — كل ذلك متصل في مكان واحد.'
+          },
+          {
+            q: 'هل أفينتا بأسعار معقولة لأصحاب الشركات الصغيرة؟',
+            a: 'نعم. أفينتا مصمم ليكون رشيقاً وبأسعار معقولة للشركات الصغيرة والمتوسطة. يحصل أعضاء الوصول المبكر على أسعار تعريفية خاصة. أنت تدفع مقابل القيمة التي تستخدمها فقط.'
+          }
+        ]
       },
       footer: {
         tagline: 'بني للشركات الصغيرة، من قبل أشخاص يهتمون بهم.',

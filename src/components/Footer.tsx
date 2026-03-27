@@ -25,6 +25,7 @@ export default function Footer({ onAdminClick }: FooterProps) {
             <a href="#features" className="text-sm text-slate-500 hover:text-brand-600 transition-colors">{t('nav.features')}</a>
             <a href="#testimonials" className="text-sm text-slate-500 hover:text-brand-600 transition-colors">{t('nav.testimonials')}</a>
             <a href="#why" className="text-sm text-slate-500 hover:text-brand-600 transition-colors">{t('nav.why')}</a>
+            <a href="#faq" className="text-sm text-slate-500 hover:text-brand-600 transition-colors">{t('nav.faq')}</a>
             <button onClick={onAdminClick} className="text-sm text-slate-500 hover:text-brand-600 transition-colors">{t('footer.admin')}</button>
           </nav>
           

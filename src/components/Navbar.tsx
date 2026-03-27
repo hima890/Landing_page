@@ -53,6 +53,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
             <a href="#features" className="text-sm font-medium text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-400 transition-colors">{t('nav.features')}</a>
             <a href="#testimonials" className="text-sm font-medium text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-400 transition-colors">{t('nav.testimonials')}</a>
             <a href="#why" className="text-sm font-medium text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-400 transition-colors">{t('nav.why')}</a>
+            <a href="#faq" className="text-sm font-medium text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-400 transition-colors">{t('nav.faq')}</a>
           </div>
 
           <div className="flex items-center gap-4">
@@ -101,6 +102,7 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
               <a href="#features" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-900 dark:text-white hover:text-brand-600 transition-colors">{t('nav.features')}</a>
               <a href="#testimonials" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-900 dark:text-white hover:text-brand-600 transition-colors">{t('nav.testimonials')}</a>
               <a href="#why" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-900 dark:text-white hover:text-brand-600 transition-colors">{t('nav.why')}</a>
+              <a href="#faq" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-medium text-slate-900 dark:text-white hover:text-brand-600 transition-colors">{t('nav.faq')}</a>
               <button
                 onClick={toggleLanguage}
                 className="flex items-center justify-center gap-2 rounded-xl border border-slate-200 py-4 text-lg font-medium text-slate-900 dark:border-slate-800 dark:text-white"
