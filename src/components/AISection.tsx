@@ -6,7 +6,7 @@ export default function AISection() {
   const { t } = useTranslation();
 
   return (
-    <section className="py-24 sm:py-32 relative overflow-hidden">
+    <section id="ai" className="py-24 sm:py-32 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/10 blur-[120px]" />
 

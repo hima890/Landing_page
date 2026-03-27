@@ -8,6 +8,7 @@ import AISection from './components/AISection';
 import SocialProof from './components/SocialProof';
 import Testimonials from './components/Testimonials';
 import WhyAventa from './components/WhyAventa';
+import FAQSection from './components/FAQSection';
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
 import SignupModal from './components/SignupModal';
@@ -36,6 +37,7 @@ export default function App() {
         <AISection />
         <Testimonials />
         <WhyAventa />
+        <FAQSection />
         <CTASection onJoinClick={toggleModal} />
       </main>
 
