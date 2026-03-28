@@ -10,7 +10,7 @@ const resources = {
         testimonials: 'Testimonials',
         why: 'Why Aventa',
         faq: 'FAQ',
-        join: 'Get Early Access',
+        join: 'Get Access',
         admin: 'Admin'
       },
       hero: {

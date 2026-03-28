@@ -56,19 +56,21 @@ export default function Navbar({ onJoinClick }: NavbarProps) {
             <a href="#faq" className="text-sm font-medium text-slate-600 hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-400 transition-colors">{t('nav.faq')}</a>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={toggleLanguage}
-              className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-all hover:bg-slate-100 dark:hover:bg-slate-800 ${
+              className={`flex items-center gap-1.5 rounded-full px-2 py-1.5 sm:px-3 text-xs font-bold uppercase tracking-wider transition-all hover:bg-slate-100 dark:hover:bg-slate-800 ${
                 isScrolled ? 'text-white hover:bg-white/10' : 'text-slate-600 dark:text-slate-400'
               }`}
             >
-              <Globe className="h-4 w-4" />
-              {i18n.language === 'en' ? 'العربية' : 'English'}
+              <Globe className="h-4 w-4 shrink-0" />
+              <span className="hidden sm:inline">
+                {i18n.language === 'en' ? 'العربية' : 'English'}
+              </span>
             </button>
             <button
               onClick={onJoinClick}
-              className={`rounded-full px-6 py-2.5 text-sm font-semibold transition-all active:scale-95 ${
+              className={`hidden md:inline-flex rounded-full px-5 py-2 text-sm font-semibold transition-all active:scale-95 ${
                 isScrolled 
                   ? 'bg-brand-600 text-white hover:bg-brand-700' 
                   : 'bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100'
