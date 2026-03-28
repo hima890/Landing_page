@@ -162,7 +162,8 @@ const resources = {
       footer: {
         tagline: 'Built for small businesses, by people who care about them.',
         badge: 'Early Stage • Built with ❤️',
-        rights: 'Aventa Systems. All rights reserved.'
+        rights: 'Aventa Systems. All rights reserved.',
+        admin: 'Admin'
       },
       admin: {
         login: {
@@ -392,7 +393,8 @@ const resources = {
       footer: {
         tagline: 'بني للشركات الصغيرة، من قبل أشخاص يهتمون بهم.',
         badge: 'مرحلة مبكرة • بني بـ ❤️',
-        rights: 'أنظمة أفينتا. جميع الحقوق محفوظة.'
+        rights: 'أنظمة أفينتا. جميع الحقوق محفوظة.',
+        admin: 'مشرف'
       },
       admin: {
         login: {
