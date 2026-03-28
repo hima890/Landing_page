@@ -44,7 +44,8 @@ export default function SignupModal({ isOpen, onClose }: SignupModalProps) {
     }
   };
 
-  const businessTypes = t('signup.businessTypes', { returnObjects: true }) as { id: string; label: string }[];
+  const rawBusinessTypes = t('signup.businessTypes', { returnObjects: true });
+  const businessTypes: { id: string; label: string }[] = Array.isArray(rawBusinessTypes) ? rawBusinessTypes : [];
 
   return (
     <AnimatePresence>
