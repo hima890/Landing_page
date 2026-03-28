@@ -217,17 +217,6 @@ const resources = {
         submit: 'Join Waiting List',
         submitting: 'Submitting...',
         privacy: 'By joining, you agree to our privacy policy. No spam, ever.',
-        labels: {
-          name: 'Full Name',
-          business: 'Business Name',
-          whatsapp: 'WhatsApp Number',
-          type: 'Business Type',
-          problem: 'Main Problem You Face',
-          submit: 'Join Waiting List',
-          submitting: 'Submitting...',
-          selectType: 'Select type...',
-          privacy: 'By joining, you agree to our privacy policy. No spam, ever.'
-        },
         businessTypes: [
           { id: 'retail', label: 'Retail Store' },
           { id: 'restaurant', label: 'Restaurant / Cafe' },
@@ -240,20 +229,7 @@ const resources = {
           { id: 'education', label: 'Education / Training' },
           { id: 'technology', label: 'Technology / Software' },
           { id: 'other', label: 'Other' }
-        ],
-        types: {
-          retail: 'Retail Store',
-          restaurant: 'Restaurant / Cafe',
-          service: 'Service Provider',
-          ecommerce: 'E-commerce',
-          real_estate: 'Real Estate',
-          logistics: 'Logistics / Transport',
-          manufacturing: 'Manufacturing',
-          healthcare: 'Healthcare / Clinic',
-          education: 'Education / Training',
-          technology: 'Technology / Software',
-          other: 'Other'
-        }
+        ]
       }
     }
   },
@@ -471,17 +447,6 @@ const resources = {
         submit: 'انضم لقائمة الانتظار',
         submitting: 'جاري الإرسال...',
         privacy: 'بانضمامك، فإنك توافق على سياسة الخصوصية الخاصة بنا. لا رسائل مزعجة أبداً.',
-        labels: {
-          name: 'الاسم الكامل',
-          business: 'اسم العمل التجاري',
-          whatsapp: 'رقم واتساب',
-          type: 'نوع العمل',
-          problem: 'المشكلة الرئيسية التي تواجهها',
-          submit: 'انضم لقائمة الانتظار',
-          submitting: 'جاري الإرسال...',
-          selectType: 'اختر النوع...',
-          privacy: 'بانضمامك، فإنك توافق على سياسة الخصوصية الخاصة بنا. لا رسائل مزعجة أبداً.'
-        },
         businessTypes: [
           { id: 'retail', label: 'متجر تجزئة' },
           { id: 'restaurant', label: 'مطعم / مقهى' },
@@ -494,20 +459,7 @@ const resources = {
           { id: 'education', label: 'تعليم / تدريب' },
           { id: 'technology', label: 'تقنية / برمجيات' },
           { id: 'other', label: 'أخرى' }
-        ],
-        types: {
-          retail: 'متجر تجزئة',
-          restaurant: 'مطعم / مقهى',
-          service: 'مزود خدمة',
-          ecommerce: 'تجارة إلكترونية',
-          real_estate: 'عقارات',
-          logistics: 'لوجستيات / نقل',
-          manufacturing: 'تصنيع',
-          healthcare: 'رعاية صحية / عيادة',
-          education: 'تعليم / تدريب',
-          technology: 'تقنية / برمجيات',
-          other: 'أخرى'
-        }
+        ]
       }
     }
   }
