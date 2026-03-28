@@ -67,15 +67,16 @@ jobs:
 
       - name: Create .env.local on server
         run: |
-          ssh -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
-            "cat > ${{ secrets.DEPLOY_PATH }}/.env.local << 'EOF'
+          ssh -p ${{ secrets.SSH_PORT || 22 }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+          cat > ${{ secrets.DEPLOY_PATH }}/.env.local << 'EOF'
           ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }}
           ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}
           ADMIN_SECRET=${{ secrets.ADMIN_SECRET }}
           APP_URL=${{ secrets.APP_URL }}
           VITE_GOOGLE_SHEETS_WEBHOOK_URL=${{ secrets.VITE_GOOGLE_SHEETS_WEBHOOK_URL }}
           EOF
-          chmod 600 ${{ secrets.DEPLOY_PATH }}/.env.local"
+          chmod 600 ${{ secrets.DEPLOY_PATH }}/.env.local
+          "
 
       - name: Sync source files to server
         run: |
@@ -97,6 +98,10 @@ jobs:
 
           npm ci --omit=dev
 
+          # Load environment variables
+          export \$(cat .env.local | xargs)
+
+          # Start or restart PM2
           if pm2 describe aventa-app > /dev/null 2>&1; then
             pm2 restart aventa-app
           else
