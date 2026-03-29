@@ -5,7 +5,7 @@ import { LayoutGrid, Users, BarChart3, Download, ArrowLeft, FileText, Table, Eye
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'; // kept for isRTL direction only
 
 interface Submission {
   id: number;
@@ -25,7 +25,7 @@ interface Stats {
 }
 
 export default function AdminDashboard({ onBack }: { onBack: () => void }) {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const isRTL = i18n.dir() === 'rtl';
   const [data, setData] = useState<{ submissions: Submission[]; stats: Stats } | null>(null);
   const [loading, setLoading] = useState(false);
@@ -84,10 +84,10 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
         setIsAuthenticated(true);
         fetchStats();
       } else {
-        setLoginError(t('admin.login.error'));
+        setLoginError('Invalid email or password');
       }
     } catch (err) {
-      setLoginError(t('admin.login.genericError'));
+      setLoginError('Something went wrong. Please try again.');
     } finally {
       setIsLoggingIn(false);
     }
@@ -122,7 +122,7 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
 
     autoTable(doc, {
       startY: 30,
-      head: [[t('admin.dashboard.table.name'), t('admin.dashboard.table.business'), t('admin.dashboard.table.type'), t('admin.dashboard.table.whatsapp'), t('admin.dashboard.table.problem'), t('admin.dashboard.table.date')]],
+      head: [['Name', 'Business', 'Type', 'WhatsApp', 'Problem', 'Date']],
       body: tableData,
       theme: 'striped',
       headStyles: { fillColor: [79, 70, 229] }, // brand-600
@@ -139,13 +139,13 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
     if (!data) return;
     // Format data for excel to include all fields and better headers
     const excelData = data.submissions.map(s => ({
-      [t('admin.dashboard.table.name')]: s.fullName,
-      [t('admin.dashboard.table.business')]: s.businessName,
-      [t('admin.dashboard.table.type')]: s.businessType,
-      [t('admin.dashboard.table.whatsapp')]: s.whatsappNumber,
-      [t('admin.dashboard.table.problem')]: s.mainProblem,
+      'Name': s.fullName,
+      'Business': s.businessName,
+      'Type': s.businessType,
+      'WhatsApp': s.whatsappNumber,
+      'Problem': s.mainProblem,
       'Notes': s.notes,
-      [t('admin.dashboard.table.date')]: new Date(s.timestamp).toLocaleString()
+      'Date': new Date(s.timestamp).toLocaleString()
     }));
 
     const ws = XLSX.utils.json_to_sheet(excelData);
@@ -166,13 +166,13 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-900/30">
               <Lock className="h-8 w-8" />
             </div>
-            <h2 className="font-display text-2xl font-bold text-slate-900 dark:text-white">{t('admin.login.title')}</h2>
-            <p className="mt-2 text-slate-500">{t('admin.login.desc')}</p>
+            <h2 className="font-display text-2xl font-bold text-slate-900 dark:text-white">Admin Login</h2>
+            <p className="mt-2 text-slate-500">Enter your credentials to access the dashboard</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">{t('admin.login.email')}</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
               <div className="relative">
                 <Mail className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400`} />
                 <input
@@ -187,7 +187,7 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">{t('admin.login.password')}</label>
+              <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Password</label>
               <div className="relative">
                 <Lock className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400`} />
                 <input
@@ -210,7 +210,7 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
               type="submit"
               className="flex w-full items-center justify-center rounded-xl bg-brand-600 py-4 font-semibold text-white transition-all hover:bg-brand-700 active:scale-95 disabled:opacity-70"
             >
-              {isLoggingIn ? <Loader2 className="h-5 w-5 animate-spin" /> : t('admin.login.button')}
+              {isLoggingIn ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Login to Dashboard'}
             </button>
             
             <button
@@ -218,7 +218,7 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
               onClick={onBack}
               className="w-full py-2 text-sm font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
             >
-              {t('admin.login.back')}
+              Back to Site
             </button>
           </form>
         </motion.div>
@@ -236,7 +236,7 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
             <button onClick={handleBack} className="p-2 text-slate-500 hover:text-slate-900 dark:hover:text-white">
               <ArrowLeft className={`h-6 w-6 ${isRTL ? 'rotate-180' : ''}`} />
             </button>
-            <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">{t('admin.dashboard.title')}</h1>
+            <h1 className="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Admin Dashboard</h1>
           </div>
           <div className="flex flex-wrap gap-3">
             <button
@@ -244,21 +244,21 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
               className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 sm:flex-none"
             >
               <FileText className="h-4 w-4" />
-              {t('admin.dashboard.actions.pdf')}
+              Export PDF
             </button>
             <button
               onClick={exportExcel}
               className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-slate-50 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800 sm:flex-none"
             >
               <Table className="h-4 w-4" />
-              {t('admin.dashboard.actions.excel')}
+              Export Excel
             </button>
             <button
               onClick={handleLogout}
               className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-red-50 px-4 py-2 text-sm font-semibold text-red-600 shadow-sm hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 dark:hover:bg-red-900/30 sm:flex-none"
             >
               <LogOut className="h-4 w-4" />
-              {t('admin.dashboard.actions.logout')}
+              Logout
             </button>
           </div>
         </div>
@@ -270,7 +270,7 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
                 <Users className="h-6 w-6" />
               </div>
               <div>
-                <p className="text-sm font-medium text-slate-500">{t('admin.dashboard.stats.signups')}</p>
+                <p className="text-sm font-medium text-slate-500">Waitlist Signups</p>
                 <p className="text-2xl font-bold text-slate-900 dark:text-white">{data?.stats.total}</p>
               </div>
             </div>
@@ -281,7 +281,7 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
                 <Eye className="h-6 w-6" />
               </div>
               <div>
-                <p className="text-sm font-medium text-slate-500">{t('admin.dashboard.stats.visitors')}</p>
+                <p className="text-sm font-medium text-slate-500">Unique Visitors</p>
                 <p className="text-2xl font-bold text-slate-900 dark:text-white">{data?.stats.visitors}</p>
               </div>
             </div>
@@ -292,7 +292,7 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
                 <BarChart3 className="h-6 w-6" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-medium text-slate-500">{t('admin.dashboard.stats.categories')}</p>
+                <p className="text-sm font-medium text-slate-500">Top Categories</p>
                 <div className="mt-1 flex gap-2">
                   {data?.stats.byType.slice(0, 2).map((type, i) => (
                     <span key={i} className="text-xs font-semibold text-slate-700 dark:text-slate-300">
@@ -310,11 +310,11 @@ export default function AdminDashboard({ onBack }: { onBack: () => void }) {
             <table className="w-full text-left rtl:text-right">
               <thead>
                 <tr className="border-b border-slate-100 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/50">
-                  <th className="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">{t('admin.dashboard.table.name')}</th>
-                  <th className="hidden px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white md:table-cell">{t('admin.dashboard.table.business')}</th>
-                  <th className="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">{t('admin.dashboard.table.whatsapp')}</th>
-                  <th className="hidden px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white lg:table-cell">{t('admin.dashboard.table.problem')}</th>
-                  <th className="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">{t('admin.dashboard.table.date')}</th>
+                  <th className="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">Name</th>
+                  <th className="hidden px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white md:table-cell">Business</th>
+                  <th className="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">WhatsApp</th>
+                  <th className="hidden px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white lg:table-cell">Problem</th>
+                  <th className="px-6 py-4 text-sm font-semibold text-slate-900 dark:text-white">Date</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
