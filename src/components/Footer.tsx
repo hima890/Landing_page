@@ -36,7 +36,7 @@ export default function Footer({ onAdminClick }: FooterProps) {
         
         <div className="mt-12 border-t border-slate-100 pt-8 text-center dark:border-slate-900">
           <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} {t('footer.copyright')}
+            © {new Date().getFullYear()} {t('footer.rights')}
           </p>
         </div>
       </div>

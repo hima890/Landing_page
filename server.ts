@@ -74,8 +74,12 @@ async function startServer() {
   app.use(helmet({
     contentSecurityPolicy: false, // Disable for Vite dev server compatibility
   }));
-  app.use(cors());
-  app.use(express.json());
+
+  const allowedOrigin = process.env.APP_URL || '';
+  if (allowedOrigin) {
+    app.use(cors({ origin: allowedOrigin }));
+  }
+  app.use(express.json({ limit: '16kb' }));
 
   // Visitor Tracking Middleware
   app.use((req, res, next) => {
@@ -126,11 +130,34 @@ async function startServer() {
     }
   });
 
+  const ALLOWED_BUSINESS_TYPES = new Set([
+    'retail', 'restaurant', 'service', 'ecommerce', 'real_estate',
+    'logistics', 'manufacturing', 'healthcare', 'education', 'technology', 'other',
+  ]);
+
   app.post('/api/waitlist', (req, res) => {
     const { fullName, businessName, businessType, whatsappNumber, mainProblem, notes } = req.body;
 
-    if (!fullName || !businessName || !whatsappNumber) {
+    if (
+      !fullName || !businessName || !businessType ||
+      !whatsappNumber || !mainProblem ||
+      typeof fullName !== 'string' || typeof businessName !== 'string' ||
+      typeof businessType !== 'string' || typeof whatsappNumber !== 'string' ||
+      typeof mainProblem !== 'string'
+    ) {
       return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    if (
+      fullName.length > 200 || businessName.length > 200 ||
+      whatsappNumber.length > 50 || mainProblem.length > 2000 ||
+      (notes && (typeof notes !== 'string' || notes.length > 2000))
+    ) {
+      return res.status(400).json({ error: 'Input exceeds maximum allowed length' });
+    }
+
+    if (!ALLOWED_BUSINESS_TYPES.has(businessType)) {
+      return res.status(400).json({ error: 'Invalid business type' });
     }
 
     try {

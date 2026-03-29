@@ -160,6 +160,7 @@ const resources = {
         ]
       },
       footer: {
+        company: 'Aventa',
         tagline: 'Built for small businesses, by people who care about them.',
         badge: 'Early Stage • Built with ❤️',
         rights: 'Aventa Systems. All rights reserved.',
@@ -173,7 +174,8 @@ const resources = {
           password: 'Password',
           button: 'Login to Dashboard',
           back: 'Back to Site',
-          error: 'Invalid email or password'
+          error: 'Invalid email or password',
+          genericError: 'Something went wrong. Please try again.'
         },
         dashboard: {
           title: 'Admin Dashboard',
@@ -185,6 +187,7 @@ const resources = {
           table: {
             name: 'Name',
             business: 'Business',
+            type: 'Type',
             whatsapp: 'WhatsApp',
             problem: 'Problem',
             date: 'Date'
@@ -391,6 +394,7 @@ const resources = {
         ]
       },
       footer: {
+        company: 'أفينتا',
         tagline: 'صُنع للشركات الصغيرة، من فريق يؤمن بها.',
         badge: 'مرحلة مبكرة • صُنع بـ ❤️',
         rights: 'أنظمة أفينتا. جميع الحقوق محفوظة.',
@@ -404,7 +408,8 @@ const resources = {
           password: 'كلمة المرور',
           button: 'دخول إلى لوحة التحكم',
           back: 'العودة للموقع',
-          error: 'البريد الإلكتروني أو كلمة المرور غير صحيحة'
+          error: 'البريد الإلكتروني أو كلمة المرور غير صحيحة',
+          genericError: 'حدث خطأ ما. يرجى المحاولة مرة أخرى.'
         },
         dashboard: {
           title: 'لوحة تحكم المسؤول',
@@ -416,6 +421,7 @@ const resources = {
           table: {
             name: 'الاسم',
             business: 'اسم المنشأة',
+            type: 'النوع',
             whatsapp: 'واتساب',
             problem: 'التحدي الرئيسي',
             date: 'التاريخ'
